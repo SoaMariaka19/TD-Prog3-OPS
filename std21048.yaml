@@ -1,11 +1,18 @@
-AWSTemplateFormatVersion: "2010-09-09"
-
 Resources:
-  S3Bucket:
+  MyS3Bucket:
     Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName:  STD21048
-    CreateBucket: true
-    StoreInSsm: true
-    SsmParameterName: /STD21048/arn
- 
+      BucketName: std21048
+  MyBucketNameParam:
+    Type: 'AWS::SSM::Parameter'
+    Properties:
+      Name: /MyS3Bucket/Name
+      Type: String
+      Value: !Ref MyS3Bucket
+
+  MyBucketArnParam:
+    Type: 'AWS::SSM::Parameter'
+    Properties:
+      Name: /MyS3Bucket/Arn
+      Type: String
+      Value: !GetAtt MyS3Bucket.Arn

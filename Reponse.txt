@@ -1,0 +1,1 @@
+aws cloudformation deploy --template-file std21048.yaml --stack-name my-stack-name
